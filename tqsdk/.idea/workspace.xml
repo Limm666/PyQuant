@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/download/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/quantitative_analysis/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/DCE.c1805.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1805.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/DCE.c1809.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1809.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/DCE.c1905.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1905.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/DCE.c1909.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1909.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quantitative_analysis/bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/kLine.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/series_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,26 +190,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1647" height="466" key="DebuggerActiveHint/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578026899603" />
-    <state width="1899" height="392" key="GridCell.Tab.0.bottom" timestamp="1578277830946">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="392" key="GridCell.Tab.0.bottom" timestamp="1578284338298">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="486" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
-    <state width="1899" height="392" key="GridCell.Tab.0.center" timestamp="1578277830946">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578284338298" />
+    <state width="1899" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578279604765" />
+    <state width="1899" height="392" key="GridCell.Tab.0.center" timestamp="1578284338298">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="486" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
-    <state width="1899" height="392" key="GridCell.Tab.0.left" timestamp="1578277830946">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="392" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578284338298" />
+    <state width="1899" height="392" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578279604758" />
+    <state width="1899" height="392" key="GridCell.Tab.0.left" timestamp="1578284338298">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="486" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
-    <state width="1899" height="392" key="GridCell.Tab.0.right" timestamp="1578277830946">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="392" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578284338298" />
+    <state width="1899" height="392" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578279604754" />
+    <state width="1899" height="392" key="GridCell.Tab.0.right" timestamp="1578284338298">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="486" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
+    <state width="1899" height="392" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578284338298" />
+    <state width="1899" height="392" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578279604762" />
     <state width="1899" height="486" key="GridCell.Tab.1.bottom" timestamp="1578277409683">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
