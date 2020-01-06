@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="" />
+    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/download/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/quantitative_analysis/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/DCE.c1805.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1805.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/DCE.c1809.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1809.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/DCE.c1905.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1905.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/DCE.c1909.csv" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/DCE.c1909.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quantitative_analysis/bar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/download.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/download/download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/kLine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/series_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +29,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1VpQIiDS1DZnZMd1k8YBJpx7r17" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +41,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Quant\PyQuant\tqsdk\core\download" />
+      <recent name="E:\Quant\PyQuant\tqsdk\core\quantitative_analysis" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="bar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -36,7 +63,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/bar.py" />
+      <option name="SCRIPT_NAME" value="E:\Quant\PyQuant\tqsdk\core\quantitative_analysis\bar.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -57,7 +84,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/download.py" />
+      <option name="SCRIPT_NAME" value="E:\Quant\PyQuant\tqsdk\core\download\download.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -78,7 +105,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/kLine.py" />
+      <option name="SCRIPT_NAME" value="E:\Quant\PyQuant\tqsdk\core\quantitative_analysis\kLine.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,9 +135,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="series_tools" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tqsdk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/core/quantitative_analysis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.series_tools" />
         <item itemvalue="Python.download" />
         <item itemvalue="Python.kLine" />
         <item itemvalue="Python.bar" />
@@ -143,54 +192,59 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="569" y="1302" key="#xdebugger.evaluate" timestamp="1577953443901">
-      <screen x="-146" y="1080" width="1920" height="1040" />
+    <state x="715" y="222" key="#xdebugger.evaluate" timestamp="1578277086393">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="569" y="1302" key="#xdebugger.evaluate/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1577953443901" />
+    <state x="715" y="222" key="#xdebugger.evaluate/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277086393" />
     <state width="1647" height="466" key="DebuggerActiveHint" timestamp="1578026899603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1647" height="466" key="DebuggerActiveHint/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578026899603" />
-    <state width="1899" height="392" key="GridCell.Tab.0.bottom" timestamp="1578273485030">
+    <state width="1899" height="392" key="GridCell.Tab.0.bottom" timestamp="1578277830946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485030" />
-    <state width="1899" height="392" key="GridCell.Tab.0.center" timestamp="1578273485030">
+    <state width="1899" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
+    <state width="1899" height="392" key="GridCell.Tab.0.center" timestamp="1578277830946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485030" />
-    <state width="1899" height="392" key="GridCell.Tab.0.left" timestamp="1578273485030">
+    <state width="1899" height="392" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
+    <state width="1899" height="392" key="GridCell.Tab.0.left" timestamp="1578277830946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485030" />
-    <state width="1899" height="392" key="GridCell.Tab.0.right" timestamp="1578273485030">
+    <state width="1899" height="392" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
+    <state width="1899" height="392" key="GridCell.Tab.0.right" timestamp="1578277830946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="392" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485030" />
-    <state width="1899" height="486" key="GridCell.Tab.1.bottom" timestamp="1578273485027">
+    <state width="1899" height="392" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277830946" />
+    <state width="1899" height="486" key="GridCell.Tab.1.bottom" timestamp="1578277409683">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.1.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266407" />
-    <state width="1899" height="486" key="GridCell.Tab.1.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485027" />
-    <state width="1899" height="486" key="GridCell.Tab.1.center" timestamp="1578273485027">
+    <state width="1899" height="486" key="GridCell.Tab.1.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277409683" />
+    <state width="1899" height="486" key="GridCell.Tab.1.center" timestamp="1578277409682">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.1.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="486" key="GridCell.Tab.1.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485027" />
-    <state width="1899" height="486" key="GridCell.Tab.1.left" timestamp="1578273485027">
+    <state width="1899" height="486" key="GridCell.Tab.1.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277409682" />
+    <state width="1899" height="486" key="GridCell.Tab.1.left" timestamp="1578277409682">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.1.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="486" key="GridCell.Tab.1.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485027" />
-    <state width="1899" height="486" key="GridCell.Tab.1.right" timestamp="1578273485027">
+    <state width="1899" height="486" key="GridCell.Tab.1.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277409682" />
+    <state width="1899" height="486" key="GridCell.Tab.1.right" timestamp="1578277409683">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="486" key="GridCell.Tab.1.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578043266406" />
-    <state width="1899" height="486" key="GridCell.Tab.1.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578273485027" />
+    <state width="1899" height="486" key="GridCell.Tab.1.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578277409683" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1578274615613">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578274615613" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
