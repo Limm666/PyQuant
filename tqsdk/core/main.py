@@ -6,25 +6,31 @@ from core.quantitative_analysis import series_tools as tools
 from core.download import download as dl
 from datetime import datetime, date
 from tqsdk import TqApi
+from tqsdk.ta import MACD
 
-tool = tools.AnalysisTools()
-dataDownload = dl.DataDownload()
 api = TqApi(web_gui=True)
-klines = api.get_kline_serial("DCE.y2005", 60 * 60 * 24, 50)
-
-try:
-
-    # 　根据k线进行分析
-    tool.processKline(klines)
-    #  下载数据
-    # dataDownload.download("y1805", "DCE.y1805", 60 * 60 * 24, date(2017, 7, 1), date(2018, 7, 1),
-    #                       "./download/DCE.y1805.csv")
-    #  分析价差
-    # tool.spreadAnalysis("DCE.c1809", "DCE.c1805")
-except FileNotFoundError as e:
-    print(e)
-except Exception as e:
-    print(e)
+klines = api.get_kline_serial("DCE.y2005", 10)
+quote = api.get_quote("DCE.y2005")
 
 while True:
     api.wait_update()
+    if api.is_changing(klines):
+        macd = MACD(klines, 12, 26, 9)
+        diff = list(macd["diff"])[-1]
+        dea = list(macd["dea"])[-1]
+        bar = list(macd["bar"])[-1]
+        print(diff)
+        print(dea)
+        print(bar)
+        tmp_diff = list(macd["diff"])[-2]
+        tmp_dea = list(macd["dea"])[-2]
+        tmp_bar = list(macd["bar"])[-2]
+        print(tmp_diff)
+        print(tmp_dea)
+        print(tmp_bar)
+        if diff > 0 and dea > 0 and tmp_dea > tmp_diff and diff > dea:
+            order = api.insert_order(symbol="DCE.y2005", direction="BUY", offset="OPEN", volume=10,
+                                     limit_price=quote.ask_price1)
+        elif diff < 0 and dea < 0 and tmp_dea < tmp_diff and diff < dea:
+            order = api.insert_order(symbol="DCE.y2005", direction="SELL", offset="OPEN", volume=10,
+                                     limit_price=quote.bid_price1)
