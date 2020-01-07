@@ -21,20 +21,23 @@ class quantTrade(object):
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
         target_pos = TargetPosTask(self.api, instrumentId)  # 创建一个自动调仓工具
 
-        if diff > 0 and dea > 0 and crossup == 1:
+        if diff > 0 and dea > 0 and list(crossup)[-1] == 1:
             # 如果有仓位，先平仓，再开仓
             if position.pos > 0:
                 # 平仓
                 print(" SELL close %d" % position.pos)
                 target_pos.set_target_volume(0)
                 # order = self.trade.insertOrder(instrumentId, "SELL", "CLOSE", position.pos, quote.bid_price1)
-            print(" BUY OPEN 10")
-            order = self.trade.insertOrder(instrumentId, "BUY", "OPEN", 10, quote.ask_price1)
+                if position.pos == 0:
+                    print(" BUY OPEN 10")
+                    order = self.trade.insertOrder(instrumentId, "BUY", "OPEN", 10, quote.ask_price1)
 
-        elif diff < 0 and dea < 0 and crossdown == 1:
+        elif diff < 0 and dea < 0 and list(crossdown)[-1] == 1:
             if position.pos < 0:
                 # 平仓
                 print(" BUY close %d" % abs(position.pos))
                 target_pos.set_target_volume(0)
-            print(" SELL OPEN 10")
-            order = self.trade.insertOrder(instrumentId, "SELL", "OPEN", 10, quote.bid_price1)
+                # order = self.trade.insertOrder(instrumentId, "SELL", "CLOSE", position.pos, quote.bid_price1)
+                if position.pos == 0:
+                    print(" SELL OPEN 10")
+                    order = self.trade.insertOrder(instrumentId, "SELL", "OPEN", 10, quote.bid_price1)
