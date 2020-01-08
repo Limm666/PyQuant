@@ -2,6 +2,7 @@
 # author: limm_666
 from tqsdk.ta import MACD, tafunc
 from tqsdk import TargetPosTask
+from project.tools.loggerTools import logger
 
 
 class quantTrade(object):
@@ -13,9 +14,7 @@ class quantTrade(object):
         macd = MACD(klines, 12, 26, 9)
         diff = list(macd["diff"])[-1]
         dea = list(macd["dea"])[-1]
-        bar = list(macd["bar"])[-1]
 
-        account = self.trade.checkAcount()
         position = self.trade.checkPosition(instrumentId)
         crossup = tafunc.crossup(macd["diff"], macd["dea"])
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
