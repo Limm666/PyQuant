@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*- 
 # author: limm_666
-
+import sys
+# sys.path.append("../")
 from project.trade import trade, quantitive_trade
 from tqsdk import TqApi, TqAccount
 

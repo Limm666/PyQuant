@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/download/DCE.c1909.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/DCE.c1805.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/DCE.c1805.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/DCE.c1809.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/DCE.c1809.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/DCE.c1905.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/DCE.c1905.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/DCE.c1909.csv" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/DCE.y1805.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/DCE.y1805.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/download.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/download.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/download/staticData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/download/staticData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/logger.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/quantitative_analysis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/quantitative_analysis/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/quantitative_analysis/bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/quantitative_analysis/bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/quantitative_analysis/series_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/quantitative_analysis/series_tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/trade/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/trade/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/trade/quantitive_trade.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/trade/quantitive_trade.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/trade/trade.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/trade/trade.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +177,19 @@
       <option name="presentableId" value="Default" />
       <updated>1577947478398</updated>
     </task>
+    <task id="LOCAL-00001" summary="修改目录结构">
+      <created>1578477432313</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578477432313</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改目录结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改目录结构" />
   </component>
   <component name="WindowStateProjectService">
     <state x="569" y="1302" key="#xdebugger.evaluate" timestamp="1578365235180">
@@ -205,6 +197,10 @@
     </state>
     <state x="569" y="1302" key="#xdebugger.evaluate/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578365235180" />
     <state x="715" y="222" key="#xdebugger.evaluate/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578364592782" />
+    <state x="566" y="114" key="CommitChangelistDialog2" timestamp="1578477429927">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="566" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578477429927" />
     <state width="1647" height="466" key="DebuggerActiveHint" timestamp="1578364581239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
