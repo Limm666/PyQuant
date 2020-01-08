@@ -5,7 +5,7 @@ from tqsdk import TargetPosTask
 from project.tools.loggerTools import logger
 
 
-class quantTrade(object):
+class QuantTrade(object):
     def __init__(self, api, trade):
         self.api = api
         self.trade = trade

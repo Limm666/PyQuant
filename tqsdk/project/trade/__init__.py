@@ -2,4 +2,4 @@
 # author: limm_666
 
 from project.trade.trade import Trade
-from project.trade.quantitive_trade import quantTrade
+from project.trade.quantitive_trade import QuantTrade
