@@ -2,10 +2,11 @@
 # author: limm_666
 from tqsdk.ta import MACD, tafunc
 from tqsdk import TargetPosTask
+import threading
 from project.tools.loggerTools import logger
 
 
-class QuantTrade(object):
+class QuantTrade(threading.Thread):
     def __init__(self, api, trade):
         self.api = api
         self.trade = trade

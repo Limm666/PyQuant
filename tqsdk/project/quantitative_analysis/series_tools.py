@@ -2,9 +2,14 @@
 # author: limm_666
 import pandas as pd
 from matplotlib import pyplot as plt
+import matplotlib.ticker as ticker
 from tqsdk import tafunc
 import numpy as np
 import sys
+from tqsdk import TqApi, TqSim
+from tqsdk.ta import MA
+from project.download import download
+from datetime import datetime, date
 
 
 class AnalysisTools(object):
@@ -20,10 +25,11 @@ class AnalysisTools(object):
             datetime_list.append(split[0])
         return datetime_list
 
-    # 价差分析工具
+    # 跨期价差分析工具
     def spreadAnalysis(self, nearByCode, ForwardCode):
-        nearByCodeCSV = pd.read_csv("./download/" + nearByCode + ".csv")
-        ForwardCodeCSV = pd.read_csv("./download/" + ForwardCode + ".csv")
+
+        nearByCodeCSV = pd.read_csv("./" + nearByCode + ".csv")
+        ForwardCodeCSV = pd.read_csv("./" + ForwardCode + ".csv")
 
         nearByCode_close = nearByCodeCSV[nearByCode + ".close"]
         ForwardCode_close = ForwardCodeCSV[ForwardCode + ".close"]
@@ -48,7 +54,16 @@ class AnalysisTools(object):
         plt.figure(figsize=(20, 8), dpi=80)
         plt.title('avg spread%f' % avg_spread)
         plt.plot(x, y)
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(90))
         plt.show()
+
+    # 跨品种套利的价差分析
+    def crossProuductSpread(self, productCode1, productCode2, duration, strateDate, endDate, ):
+        download.download(productCode1, productCode1, duration, strateDate, endDate,
+                          "./" + productCode1 + ".csv")
+        download.download(productCode2, productCode2, duration, strateDate, endDate,
+                          "./" + productCode2 + ".csv")
+        self.spreadAnalysis(productCode1, productCode2)
 
     # 成交，持仓分析
     def processKline(self, kline):
@@ -93,3 +108,36 @@ class AnalysisTools(object):
         plt.plot(x, y3)
 
         plt.show()
+
+    # 均价
+    def avg_price(self, csv_name):
+        csv_pd = pd.read_csv(r"../download/" + csv_name + ".csv")
+        avg_price = np.average(csv_pd[csv_name + '.close'])
+        print("instrument %s :%f " % (csv_name, avg_price))
+        return avg_price
+
+
+if __name__ == "__main__":
+    tool = AnalysisTools()
+    tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.m", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
+    # tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
+    # c1605_avg = tool.avg_price("DCE.c1605")
+    # c1705_avg = tool.avg_price("DCE.c1705")
+    # c1805_avg = tool.avg_price("DCE.c1805")
+    # c1905_avg = tool.avg_price("DCE.c1905")
+    # c2005_avg = tool.avg_price("DCE.c2005")
+    # y_avg = tool.avg_price("KQ.i@DCE.c")
+    #
+    # api = TqApi(TqSim())
+    # klines = api.get_kline_serial("DCE.c2005", 24 * 60 * 60)
+    #
+    # ma60 = MA(klines, 60)
+    # ma20 = MA(klines, 20)
+    # ma5 = MA(klines, 5)
+    #
+    # # y = y_avg * 0.1 + c2005_avg * 0.2 + c1605_avg * 0.05 + c1705_avg * 0.05 + c1805_avg * 0.08 + c1905_avg * 0.08 + \
+    # #     #     list(ma60["ma"])[-1] * 0.2 + list(ma20["ma"])[-1] * 0.12 + list(ma5["ma"])[-1] * 0.12
+    #
+    # print("ma60 :%f " % (list(ma60["ma"])[-1]))
+    # print("ma20 :%f " % (list(ma20["ma"])[-1]))
+    # print("ma5 :%f " % (list(ma5["ma"])[-1]))
