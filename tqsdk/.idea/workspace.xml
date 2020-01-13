@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="logger 模块的添加">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tqsdk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tqsdk.iml" afterDir="false" />
+    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="完善macd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/DCE.p2005.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/DCE.y2005.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.m.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.p.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.y.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/trade/quantitive_trade.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/trade/quantitive_trade.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -234,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578922142005</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="完善macd">
+      <created>1578924709730</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1578924709730</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -265,7 +275,8 @@
     <MESSAGE value="晚上download 模块" />
     <MESSAGE value="logger 模块的添加" />
     <MESSAGE value="测试模块的添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试模块的添加" />
+    <MESSAGE value="完善macd" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善macd" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578544942614">
@@ -366,6 +377,16 @@
           <url>file://$PROJECT_DIR$/project/grid.py</url>
           <line>28</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/project/trade/quantitive_trade.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/project/trade/quantitive_trade.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

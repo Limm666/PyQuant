@@ -9,22 +9,22 @@ from project.tools.loggerTools import logger
 
 
 class QuantTrade(threading.Thread):
-    def __init__(self, api, trade):
+    def __init__(self, api, trade, instrumentId):
         self.api = api
         self.trade = trade
+        self.instrumentId = instrumentId
         self.crossupflag = True
         self.crossdownflag = True
 
-    def macd_trade(self, klines, quote, instrumentId, *args, **kwargs):
+    def macd_trade(self, klines, quote):
         macd = MACD(klines, 12, 26, 9)
         diff = list(macd["diff"])[-1]
         dea = list(macd["dea"])[-1]
 
-        position = self.trade.checkPosition(instrumentId)
-
+        position = self.trade.checkPosition(self.instrumentId)
         crossup = tafunc.crossup(macd["diff"], macd["dea"])
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
-        target_pos = TargetPosTask(self.api, instrumentId)  # 创建一个自动调仓工具
+        target_pos = TargetPosTask(self.api, self.instrumentId)  # 创建一个自动调仓工具
         # 会有问题，再该分钟，和上一分钟，一直都会是下穿，或上穿状态
         # 随着行情推送，会一直有交易指示
         if list(crossup)[-1] == 1 and self.crossupflag:
@@ -38,8 +38,8 @@ class QuantTrade(threading.Thread):
                 target_pos.set_target_volume(0)
             if not position.pos < 0:
                 print(" BUY OPEN 10")
-                trade_volume = self.trade.controlPosition()
-                self.trade.insertOrder(instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
+                trade_volume = self.trade.controlPosition(quote, 0.06)
+                self.trade.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
 
         elif list(crossdown)[-1] == 1 and self.crossdownflag:
             print("下穿")
@@ -49,11 +49,11 @@ class QuantTrade(threading.Thread):
                 # 平仓
                 print(" BUY close %d" % abs(position.pos))
                 target_pos.set_target_volume(0)
-            if not position.pos == 0:
-                trade_volume = self.trade.controlPosition()
-                order = self.trade.insertOrder(instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
+            if not position.pos > 0:
+                trade_volume = self.trade.controlPosition(quote, 0.06)
+                self.trade.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
 
-    def dual_thrust(quote, klines, Nday, upperK1, downerK2):
+    def dual_thrust_trade(quote, klines, Nday, upperK1, downerK2):
         NDAY = Nday  # 天数
         K1 = upperK1  # 上轨K值
         K2 = downerK2  # 下轨K值
@@ -67,6 +67,9 @@ class QuantTrade(threading.Thread):
         sell_line = current_open - range * K2  # 下轨
         print("当前开盘价: %f, 上轨: %f, 下轨: %f" % (current_open, buy_line, sell_line))
         return buy_line, sell_line
+
+    def grid_trade(self):
+        print(trade.trade)
 
 
 if __name__ == "__main__":
