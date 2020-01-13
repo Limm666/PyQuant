@@ -12,6 +12,8 @@ class QuantTrade(threading.Thread):
     def __init__(self, api, trade):
         self.api = api
         self.trade = trade
+        self.crossupflag = True
+        self.crossdownflag = True
 
     def macd_trade(self, klines, quote, instrumentId, *args, **kwargs):
         macd = MACD(klines, 12, 26, 9)
@@ -19,30 +21,37 @@ class QuantTrade(threading.Thread):
         dea = list(macd["dea"])[-1]
 
         position = self.trade.checkPosition(instrumentId)
+
         crossup = tafunc.crossup(macd["diff"], macd["dea"])
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
         target_pos = TargetPosTask(self.api, instrumentId)  # 创建一个自动调仓工具
-
-        if diff > 0 and dea > 0 and list(crossup)[-1] == 1:
+        # 会有问题，再该分钟，和上一分钟，一直都会是下穿，或上穿状态
+        # 随着行情推送，会一直有交易指示
+        if list(crossup)[-1] == 1 and self.crossupflag:
+            print("上穿")
+            self.crossupflag = False
+            self.crossdownflag = True
             # 如果有仓位，先平仓，再开仓
-            if position.pos > 0:
+            if position.pos < 0:
                 # 平仓
                 print(" SELL close %d" % position.pos)
                 target_pos.set_target_volume(0)
-                # order = self.trade.insertOrder(instrumentId, "SELL", "CLOSE", position.pos, quote.bid_price1)
-                if position.pos == 0:
-                    print(" BUY OPEN 10")
-                    order = self.trade.insertOrder(instrumentId, "BUY", "OPEN", 10, quote.ask_price1)
+            if not position.pos < 0:
+                print(" BUY OPEN 10")
+                trade_volume = self.trade.controlPosition()
+                self.trade.insertOrder(instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
 
-        elif diff < 0 and dea < 0 and list(crossdown)[-1] == 1:
-            if position.pos < 0:
+        elif list(crossdown)[-1] == 1 and self.crossdownflag:
+            print("下穿")
+            self.crossupflag = True
+            self.crossdownflag = False
+            if position.pos > 0:
                 # 平仓
                 print(" BUY close %d" % abs(position.pos))
                 target_pos.set_target_volume(0)
-                # order = self.trade.insertOrder(instrumentId, "SELL", "CLOSE", position.pos, quote.bid_price1)
-                if position.pos == 0:
-                    print(" SELL OPEN 10")
-                    order = self.trade.insertOrder(instrumentId, "SELL", "OPEN", 10, quote.bid_price1)
+            if not position.pos == 0:
+                trade_volume = self.trade.controlPosition()
+                order = self.trade.insertOrder(instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
 
     def dual_thrust(quote, klines, Nday, upperK1, downerK2):
         NDAY = Nday  # 天数
