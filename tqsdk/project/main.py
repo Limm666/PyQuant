@@ -12,9 +12,10 @@ klines = api.get_kline_serial("DCE.y2005", 60)
 quote = api.get_quote("DCE.y2005")
 trade = Trade(api)
 account = trade.checkAcount()
+qt = QuantTrade(api, trade, "DCE.y2005")
+
 while True:
     api.wait_update()
     account = trade.checkAcount()
     if api.is_changing(klines):
-        qt = QuantTrade(api, trade,  "DCE.y2005")
         qt.macd_trade(klines, quote)
