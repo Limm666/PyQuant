@@ -25,7 +25,7 @@ class Trade(object):
         return account
 
     # 控制仓位
-    def orderNum(self, quote, margin_rate):
+    def controlPosition(self, quote, margin_rate):
         account = self.checkAcount()
         midPrice = (quote.bid_price1 + quote.ask_price1) / 2
         volume_multiple = quote.volume_multiple
