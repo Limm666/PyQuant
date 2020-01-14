@@ -119,7 +119,8 @@ class AnalysisTools(object):
 
 if __name__ == "__main__":
     tool = AnalysisTools()
-    tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.m", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
+    tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2019, 6, 1), date(2020, 1, 14), )
+    # tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.p", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 14), )
     # tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
     # c1605_avg = tool.avg_price("DCE.c1605")
     # c1705_avg = tool.avg_price("DCE.c1705")

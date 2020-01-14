@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="完善macd">
+    <list default="true" id="1d95b42e-339d-41cc-9cf6-0dbe87952707" name="Default Changelist" comment="logger 模块的添加">
+      <change afterPath="$PROJECT_DIR$/project/test/redgreenlight.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/DCE.p2005.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/DCE.y2005.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.m.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.p.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/KQ.i@DCE.y.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/trade/quantitive_trade.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/trade/quantitive_trade.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/quantitative_analysis/series_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/quantitative_analysis/series_tools.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,40 +43,7 @@
       <recent name="E:\Quant\PyQuant\tqsdk\core\quantitative_analysis" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="RLock" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tqsdk" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/test/RLock.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.series_tools">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tqsdk" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -125,6 +86,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="redgreenlight" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tqsdk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project/test" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/test/redgreenlight.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="semaphoreDemo" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tqsdk" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,19 +128,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="thread" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="series_tools" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="tqsdk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project/test" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="D:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project/quantitative_analysis" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/test/thread.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/quantitative_analysis/series_tools.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -169,13 +151,25 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.series_tools" />
+        <item itemvalue="Python.redgreenlight" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.quantitive_trade" />
         <item itemvalue="Python.semaphoreDemo" />
-        <item itemvalue="Python.RLock" />
-        <item itemvalue="Python.thread" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -283,6 +277,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578544942614" />
+    <state x="522" y="1213" key="#redgreenlight" timestamp="1578965598552">
+      <screen x="-146" y="1080" width="1920" height="1040" />
+    </state>
+    <state x="522" y="1213" key="#redgreenlight/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578965598552" />
+    <state x="522" y="1213" key="#series_tools" timestamp="1578965824176">
+      <screen x="-146" y="1080" width="1920" height="1040" />
+    </state>
+    <state x="522" y="1213" key="#series_tools/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578965824176" />
     <state x="569" y="1302" key="#xdebugger.evaluate" timestamp="1578365235180">
       <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
@@ -300,28 +302,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="152" y="92" width="1536" height="858" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578534507141" />
-    <state width="1882" height="307" key="GridCell.Tab.0.bottom" timestamp="1578567930471">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom" timestamp="1578966097809">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="446" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578382169377" />
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578966097809" />
     <state width="1899" height="486" key="GridCell.Tab.0.bottom/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578364565549" />
     <state width="1882" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578567930471" />
-    <state width="1882" height="307" key="GridCell.Tab.0.center" timestamp="1578567930465">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="243" key="GridCell.Tab.0.center" timestamp="1578966097808">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="446" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578382169374" />
+    <state width="1899" height="243" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578966097808" />
     <state width="1899" height="486" key="GridCell.Tab.0.center/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578364565549" />
     <state width="1882" height="307" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578567930465" />
-    <state width="1882" height="307" key="GridCell.Tab.0.left" timestamp="1578567930463">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="243" key="GridCell.Tab.0.left" timestamp="1578966097808">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="446" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578382169373" />
+    <state width="1899" height="243" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578966097808" />
     <state width="1899" height="486" key="GridCell.Tab.0.left/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578364565548" />
     <state width="1882" height="307" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578567930463" />
-    <state width="1882" height="307" key="GridCell.Tab.0.right" timestamp="1578567930469">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right" timestamp="1578966097809">
+      <screen x="-146" y="1080" width="1920" height="1040" />
     </state>
-    <state width="1899" height="446" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578382169376" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@-146.1080.1920.1040" timestamp="1578966097809" />
     <state width="1899" height="486" key="GridCell.Tab.0.right/0.0.1920.1040/-146.1080.1920.1040@0.0.1920.1040" timestamp="1578364565549" />
     <state width="1882" height="307" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578567930469" />
     <state width="1899" height="254" key="GridCell.Tab.1.bottom" timestamp="1578567930419">
@@ -379,14 +381,9 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/project/trade/quantitive_trade.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/project/trade/quantitive_trade.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/project/quantitative_analysis/series_tools.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
