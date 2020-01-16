@@ -10,8 +10,6 @@ from project.tools.loggerTools import logger
 import project.tools.tools as tools
 
 
-
-
 class QuantTrade(threading.Thread):
     def __init__(self, api, trade, instrumentId):
         self.api = api
@@ -43,7 +41,7 @@ class QuantTrade(threading.Thread):
             if not position.pos < 0:
                 trade_volume = self.trade.controlPosition(quote, 0.06)
                 order = self.trade.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
-                conn.lpush(key,order.__dict__)
+                conn.lpush(key, order.__dict__)
                 logger.info(order)
 
         elif list(crossdown)[-1] == 1 and self.crossdownflag:
@@ -58,7 +56,7 @@ class QuantTrade(threading.Thread):
                 trade_volume = self.trade.controlPosition(quote, 0.06)
                 self.trade.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
 
-    def dual_thrust_trade(quote, klines, Nday, upperK1, downerK2):
+    def dual_thrust_trade(self, quote, klines, Nday, upperK1, downerK2):
         NDAY = Nday  # 天数
         K1 = upperK1  # 上轨K值
         K2 = downerK2  # 下轨K值
@@ -76,6 +74,9 @@ class QuantTrade(threading.Thread):
     def grid_trade(self):
         print(trade.trade)
 
+    def run(self) -> None:
+        print("1")
+
 
 if __name__ == "__main__":
     api = TqApi(TqSim(), backtest=TqBacktest(start_dt=date(2018, 5, 1), end_dt=date(2018, 10, 1)))
@@ -88,12 +89,12 @@ if __name__ == "__main__":
 
     trade = QuantTrade(api, trade=Trade(api))
 
-    buy_line, sell_line = trade.dual_thrust(quote, klines)  # 获取上下轨
+    buy_line, sell_line = trade.dual_thrust_trade(quote, klines)  # 获取上下轨
 
     while True:
         api.wait_update()
         if api.is_changing(klines.iloc[-1], ["datetime", "open"]):  # 新产生一根日线或开盘价发生变化: 重新计算上下轨
-            buy_line, sell_line = trade.dual_thrust(quote, klines)
+            buy_line, sell_line = trade.dual_thrust_trade(quote, klines)
 
         if api.is_changing(quote, "last_price"):
             if quote.last_price > buy_line:  # 高于上轨

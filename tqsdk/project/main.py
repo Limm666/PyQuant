@@ -3,19 +3,12 @@
 import sys
 # sys.path.append("../")
 
-from project.trade.trade import Trade
+import threading
 from project.trade.quantitive_trade import QuantTrade
-from tqsdk import TqApi, TqAccount, TqSim
+from project.DualThrust import DualThrust
+from project.MACDmain import macdTrade
 
-api = TqApi(TqSim(init_balance=10000.0), web_gui="http://127.0.0.1:10001")
-klines = api.get_kline_serial("DCE.y2005", 60)
-quote = api.get_quote("DCE.y2005")
-trade = Trade(api)
-account = trade.checkAcount()
-qt = QuantTrade(api, trade, "DCE.y2005")
-
-while True:
-    api.wait_update()
-    account = trade.checkAcount()
-    if api.is_changing(klines):
-        qt.macd_trade(klines, quote)
+t1 = threading.Thread(target=macdTrade)
+t2 = threading.Thread(target=DualThrust)
+t1.start()
+t2.start()
