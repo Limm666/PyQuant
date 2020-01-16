@@ -5,7 +5,7 @@ import redis
 from tqsdk import TqApi, TqAccount, TqSim
 import project.tools.tools as tools
 
-Pool = redis.ConnectionPool(host='106.12.193.65', port=6379, max_connections=10)
+Pool = redis.ConnectionPool(host='106.12.**.**', port=6379, max_connections=10)
 conn = redis.Redis(connection_pool=Pool, decode_responses=True)
 
 if __name__ == '__main__':
