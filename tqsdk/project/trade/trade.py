@@ -2,10 +2,12 @@
 # author: limm_666
 
 import math
+import threading
 
 
-class Trade(object):
+class Trade(threading.Thread):
     def __init__(self, api):
+        super(Trade, self).__init__()
         self.api = api
 
     def insertOrder(self, instrumentId, direction, offset, volume, limit_price):

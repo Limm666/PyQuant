@@ -56,7 +56,7 @@ class AnalysisTools(object):
         plt.figure(figsize=(20, 8), dpi=80)
         plt.title('avg spread%f' % avg_spread)
         plt.plot(x, y)
-        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(90))
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(10))
         plt.show()
 
     # 跨品种套利的价差分析
@@ -129,7 +129,7 @@ class AnalysisTools(object):
 
 if __name__ == "__main__":
     tool = AnalysisTools()
-    tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2019, 6, 1), date(2020, 1, 14), )
+    tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2019, 6, 1), date(2020, 1, 16), )
     # tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.p", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 14), )
     # tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
     # c1605_avg = tool.avg_price("DCE.c1605")

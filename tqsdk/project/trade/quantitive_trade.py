@@ -2,7 +2,6 @@
 # author: limm_666
 from tqsdk.ta import MACD, tafunc
 from tqsdk import TargetPosTask, TqApi, TqSim, TqBacktest
-import threading
 from project.trade.trade import Trade
 from project.dbServer.redisConnect import conn
 from datetime import datetime, date
@@ -10,11 +9,13 @@ from project.tools.loggerTools import logger
 import project.tools.tools as tools
 
 
-class QuantTrade(threading.Thread):
-    def __init__(self, api, trade, instrumentId):
+class QuantTrade(Trade):
+    def __init__(self, api, trade, instrumentId,strategyName):
+        super(Trade, self).__init__(api)
         self.api = api
         self.trade = trade
         self.instrumentId = instrumentId
+        self.strategyName = strategyName
         self.crossupflag = True
         self.crossdownflag = True
 
@@ -74,8 +75,8 @@ class QuantTrade(threading.Thread):
     def grid_trade(self):
         print(trade.trade)
 
-    def run(self) -> None:
-        print("1")
+    def run(self):
+        self.strategyName()
 
 
 if __name__ == "__main__":
