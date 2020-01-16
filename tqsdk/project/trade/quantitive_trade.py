@@ -4,8 +4,12 @@ from tqsdk.ta import MACD, tafunc
 from tqsdk import TargetPosTask, TqApi, TqSim, TqBacktest
 import threading
 from project.trade.trade import Trade
+from project.dbServer.redisConnect import conn
 from datetime import datetime, date
 from project.tools.loggerTools import logger
+import project.tools.tools as tools
+
+
 
 
 class QuantTrade(threading.Thread):
@@ -20,7 +24,7 @@ class QuantTrade(threading.Thread):
         macd = MACD(klines, 12, 26, 9)
         diff = list(macd["diff"])[-1]
         dea = list(macd["dea"])[-1]
-
+        key = tools.createKey(self.instrumentId)
         position = self.trade.checkPosition(self.instrumentId)
         crossup = tafunc.crossup(macd["diff"], macd["dea"])
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
@@ -28,7 +32,7 @@ class QuantTrade(threading.Thread):
         # 会有问题，再该分钟，和上一分钟，一直都会是下穿，或上穿状态
         # 随着行情推送，会一直有交易指示
         if list(crossup)[-1] == 1 and self.crossupflag:
-            print("上穿")
+            logger.info("上穿")
             self.crossupflag = False
             self.crossdownflag = True
             # 如果有仓位，先平仓，再开仓
@@ -37,17 +41,18 @@ class QuantTrade(threading.Thread):
                 print(" SELL close %d" % position.pos)
                 target_pos.set_target_volume(0)
             if not position.pos < 0:
-                print(" BUY OPEN 10")
                 trade_volume = self.trade.controlPosition(quote, 0.06)
-                self.trade.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
+                order = self.trade.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
+                conn.lpush(key,order.__dict__)
+                logger.info(order)
 
         elif list(crossdown)[-1] == 1 and self.crossdownflag:
-            print("下穿")
+            logger.info("下穿")
             self.crossupflag = True
             self.crossdownflag = False
             if position.pos > 0:
                 # 平仓
-                print(" BUY close %d" % abs(position.pos))
+                logger.info(" BUY close %d" % abs(position.pos))
                 target_pos.set_target_volume(0)
             if not position.pos > 0:
                 trade_volume = self.trade.controlPosition(quote, 0.06)

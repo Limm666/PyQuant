@@ -10,6 +10,8 @@ from tqsdk import TqApi, TqSim
 from tqsdk.ta import MA
 from project.download import download
 from datetime import datetime, date
+import project.dbServer.redisConnect as redis
+import project.tools.tools as tools
 
 
 class AnalysisTools(object):
@@ -115,6 +117,14 @@ class AnalysisTools(object):
         avg_price = np.average(csv_pd[csv_name + '.close'])
         print("instrument %s :%f " % (csv_name, avg_price))
         return avg_price
+
+    # 分析成交情况
+    def analysis_trde(self, instrumentId):
+        key = tools.createKey(instrumentId)
+        len = redis.conn.llen(key)
+        trade_list = []
+        for i in range(len):
+            trade_list.append(redis.conn.lindex(key, i))
 
 
 if __name__ == "__main__":
