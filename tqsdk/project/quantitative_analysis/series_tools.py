@@ -5,9 +5,6 @@ from matplotlib import pyplot as plt
 import matplotlib.ticker as ticker
 from tqsdk import tafunc
 import numpy as np
-import sys
-from tqsdk import TqApi, TqSim
-from tqsdk.ta import MA
 from project.download import download
 from datetime import datetime, date
 import project.dbServer.redisConnect as redis
