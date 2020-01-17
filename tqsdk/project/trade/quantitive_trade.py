@@ -94,7 +94,7 @@ class QuantTrade(Trade):
                     logger.info()
                     target_pos.set_target_volume(-3)  # 交易
 
-    # def dual_thrust_trade(self, klines, Nday, upperK1, downerK2):
+    # def grid_trade(self):
     def grid_trade(self):
         while True:
             self.api.wait_update()
