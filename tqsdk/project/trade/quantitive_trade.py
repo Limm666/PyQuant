@@ -21,66 +21,85 @@ class QuantTrade(Trade):
 
     # def macd_trade(self,klines,quote):
     def macd_trade(self):
-        klines = self.kwargs['klines']
-        quote = self.kwargs['quote']
+        while True:
+            self.api.wait_update()
+            klines = self.kwargs['klines']
+            quote = self.kwargs['quote']
+            if self.api.is_changing(quote, "last_price"):
+                macd = MACD(klines, 12, 26, 9)
+                diff = list(macd["diff"])[-1]
+                dea = list(macd["dea"])[-1]
+                key = tools.createKey(self.instrumentId)
+                position = self.checkPosition(self.instrumentId)
+                crossup = tafunc.crossup(macd["diff"], macd["dea"])
+                crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
+                target_pos = TargetPosTask(self.api, self.instrumentId)  # 创建一个自动调仓工具
+                # 会有问题，再该分钟，和上一分钟，一直都会是下穿，或上穿状态
+                # 随着行情推送，会一直有交易指示
+                if list(crossup)[-1] == 1 and self.crossupflag:
+                    logger.info("上穿")
+                    self.crossupflag = False
+                    self.crossdownflag = True
+                    # 如果有仓位，先平仓，再开仓
+                    if position.pos < 0:
+                        # 平仓
+                        print(" SELL close %d" % position.pos)
+                        target_pos.set_target_volume(0)
+                    if not position.pos < 0:
+                        trade_volume = self.controlPosition(quote, 0.06)
+                        order = self.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
+                        conn.lpush(key, order.__dict__)
+                        logger.info(order)
 
-        macd = MACD(klines, 12, 26, 9)
-        diff = list(macd["diff"])[-1]
-        dea = list(macd["dea"])[-1]
-        key = tools.createKey(self.instrumentId)
-        position = self.checkPosition(self.instrumentId)
-        crossup = tafunc.crossup(macd["diff"], macd["dea"])
-        crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
-        target_pos = TargetPosTask(self.api, self.instrumentId)  # 创建一个自动调仓工具
-        # 会有问题，再该分钟，和上一分钟，一直都会是下穿，或上穿状态
-        # 随着行情推送，会一直有交易指示
-        if list(crossup)[-1] == 1 and self.crossupflag:
-            logger.info("上穿")
-            self.crossupflag = False
-            self.crossdownflag = True
-            # 如果有仓位，先平仓，再开仓
-            if position.pos < 0:
-                # 平仓
-                print(" SELL close %d" % position.pos)
-                target_pos.set_target_volume(0)
-            if not position.pos < 0:
-                trade_volume = self.controlPosition(quote, 0.06)
-                order = self.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
-                conn.lpush(key, order.__dict__)
-                logger.info(order)
-
-        elif list(crossdown)[-1] == 1 and self.crossdownflag:
-            logger.info("下穿")
-            self.crossupflag = True
-            self.crossdownflag = False
-            if position.pos > 0:
-                # 平仓
-                logger.info(" BUY close %d" % abs(position.pos))
-                target_pos.set_target_volume(0)
-            if not position.pos > 0:
-                trade_volume = self.controlPosition(quote, 0.06)
-                self.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
+                elif list(crossdown)[-1] == 1 and self.crossdownflag:
+                    logger.info("下穿")
+                    self.crossupflag = True
+                    self.crossdownflag = False
+                    if position.pos > 0:
+                        # 平仓
+                        logger.info(" BUY close %d" % abs(position.pos))
+                        target_pos.set_target_volume(0)
+                    if not position.pos > 0:
+                        trade_volume = self.controlPosition(quote, 0.06)
+                        self.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
 
     # def dual_thrust_trade(self, klines, Nday, upperK1, downerK2):
     def dual_thrust_trade(self):
-        klines = self.kwargs['klines']
-        NDAY = self.kwargs['Nday']  # 天数
-        K1 = self.kwargs['upperK1']  # 上轨K值
-        K2 = self.kwargs['downerK2']  # 下轨K值
-        current_open = klines.iloc[-1]["open"]
-        HH = max(klines.high.iloc[-NDAY - 1:-1])  # N日最高价的最高价
-        HC = max(klines.close.iloc[-NDAY - 1:-1])  # N日收盘价的最高价
-        LC = min(klines.close.iloc[-NDAY - 1:-1])  # N日收盘价的最低价
-        LL = min(klines.low.iloc[-NDAY - 1:-1])  # N日最低价的最低价
-        range = max(HH - LC, HC - LL)
-        buy_line = current_open + range * K1  # 上轨
-        sell_line = current_open - range * K2  # 下轨
-        print("当前开盘价: %f, 上轨: %f, 下轨: %f" % (current_open, buy_line, sell_line))
-        return buy_line, sell_line
+        while True:
+            self.api.wait_update()
+            klines = self.kwargs['klines']
+            NDAY = self.kwargs['NDAY']  # 天数
+            K1 = self.kwargs['upperK1']  # 上轨K值
+            K2 = self.kwargs['downerK2']  # 下轨K值
+            quote = self.kwargs['quote']  # quote
 
+            current_open = klines.iloc[-1]["open"]
+            HH = max(klines.high.iloc[-NDAY - 1:-1])  # N日最高价的最高价
+            HC = max(klines.close.iloc[-NDAY - 1:-1])  # N日收盘价的最高价
+            LC = min(klines.close.iloc[-NDAY - 1:-1])  # N日收盘价的最低价
+            LL = min(klines.low.iloc[-NDAY - 1:-1])  # N日最低价的最低价
+            range = max(HH - LC, HC - LL)
+            buy_line = current_open + range * K1  # 上轨
+            sell_line = current_open - range * K2  # 下轨
+
+            if self.api.is_changing(quote, "last_price"):
+                if quote.last_price > buy_line:  # 高于上轨
+                    logger.info("高于上轨,目标持仓 多头3手")
+                    logger.info("当前开盘价: %f, 上轨: %f, 下轨: %f" % (current_open, buy_line, sell_line))
+                    logger.info()
+                    target_pos.set_target_volume(3)  # 交易
+                elif quote.last_price < sell_line:  # 低于下轨
+                    logger.info("低于下轨,目标持仓 空头3手")
+                    logger.info("当前开盘价: %f, 上轨: %f, 下轨: %f" % (current_open, buy_line, sell_line))
+                    logger.info()
+                    target_pos.set_target_volume(-3)  # 交易
+
+    # def dual_thrust_trade(self, klines, Nday, upperK1, downerK2):
     def grid_trade(self):
-        print("grid_trade")
-        print(self.kwargs["param1"])
+        while True:
+            self.api.wait_update()
+            print("grid_trade")
+            print(self.kwargs["param1"])
 
     def run(self):
         if hasattr(self, self.strategyName):
