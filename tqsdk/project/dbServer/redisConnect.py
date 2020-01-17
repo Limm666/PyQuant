@@ -7,11 +7,11 @@ from tqsdk import TqApi, TqAccount, TqSim
 import project.tools.tools as tools
 
 cp = ConfigParser()
-cp.read("./config.conf")
+cp.read("../config.conf")
 redis_host = cp.get("redis", "redis_host")
 redis_port = cp.get("redis", "redis_port")
 redis_pool = cp.get("redis", "redis_max_connections")
-Pool = redis.ConnectionPool(host=redis_host, port=redis_port, max_connections=redis_pool)
+Pool = redis.ConnectionPool(host=redis_host, port=redis_port, max_connections=(int)(redis_pool))
 conn = redis.Redis(connection_pool=Pool, decode_responses=True)
 
 if __name__ == '__main__':
