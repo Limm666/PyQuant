@@ -10,21 +10,25 @@ import project.tools.tools as tools
 
 
 class QuantTrade(Trade):
-    def __init__(self, api, trade, instrumentId,strategyName):
-        super(Trade, self).__init__(api)
-        self.api = api
-        self.trade = trade
+    def __init__(self, api, instrumentId, strategyName, *args, **kwargs):
+        super(QuantTrade, self).__init__(api)
         self.instrumentId = instrumentId
         self.strategyName = strategyName
+        self.args = args
+        self.kwargs = kwargs
         self.crossupflag = True
         self.crossdownflag = True
 
-    def macd_trade(self, klines, quote):
+    # def macd_trade(self,klines,quote):
+    def macd_trade(self):
+        klines = self.kwargs['klines']
+        quote = self.kwargs['quote']
+
         macd = MACD(klines, 12, 26, 9)
         diff = list(macd["diff"])[-1]
         dea = list(macd["dea"])[-1]
         key = tools.createKey(self.instrumentId)
-        position = self.trade.checkPosition(self.instrumentId)
+        position = self.checkPosition(self.instrumentId)
         crossup = tafunc.crossup(macd["diff"], macd["dea"])
         crossdown = tafunc.crossdown(macd["diff"], macd["dea"])
         target_pos = TargetPosTask(self.api, self.instrumentId)  # 创建一个自动调仓工具
@@ -40,8 +44,8 @@ class QuantTrade(Trade):
                 print(" SELL close %d" % position.pos)
                 target_pos.set_target_volume(0)
             if not position.pos < 0:
-                trade_volume = self.trade.controlPosition(quote, 0.06)
-                order = self.trade.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
+                trade_volume = self.controlPosition(quote, 0.06)
+                order = self.insertOrder(self.instrumentId, "BUY", "OPEN", trade_volume, quote.ask_price1)
                 conn.lpush(key, order.__dict__)
                 logger.info(order)
 
@@ -54,13 +58,15 @@ class QuantTrade(Trade):
                 logger.info(" BUY close %d" % abs(position.pos))
                 target_pos.set_target_volume(0)
             if not position.pos > 0:
-                trade_volume = self.trade.controlPosition(quote, 0.06)
-                self.trade.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
+                trade_volume = self.controlPosition(quote, 0.06)
+                self.insertOrder(self.instrumentId, "SELL", "OPEN", trade_volume, quote.bid_price1)
 
-    def dual_thrust_trade(self, quote, klines, Nday, upperK1, downerK2):
-        NDAY = Nday  # 天数
-        K1 = upperK1  # 上轨K值
-        K2 = downerK2  # 下轨K值
+    # def dual_thrust_trade(self, klines, Nday, upperK1, downerK2):
+    def dual_thrust_trade(self):
+        klines = self.kwargs['klines']
+        NDAY = self.kwargs['Nday']  # 天数
+        K1 = self.kwargs['upperK1']  # 上轨K值
+        K2 = self.kwargs['downerK2']  # 下轨K值
         current_open = klines.iloc[-1]["open"]
         HH = max(klines.high.iloc[-NDAY - 1:-1])  # N日最高价的最高价
         HC = max(klines.close.iloc[-NDAY - 1:-1])  # N日收盘价的最高价
@@ -73,10 +79,13 @@ class QuantTrade(Trade):
         return buy_line, sell_line
 
     def grid_trade(self):
-        print(trade.trade)
+        print("grid_trade")
+        print(self.kwargs["param1"])
 
     def run(self):
-        self.strategyName()
+        if hasattr(self, self.strategyName):
+            func = getattr(self, self.strategyName)
+            return func()
 
 
 if __name__ == "__main__":
