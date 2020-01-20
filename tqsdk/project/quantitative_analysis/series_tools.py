@@ -117,6 +117,7 @@ class AnalysisTools(object):
 
     # 分析成交情况
     def analysis_trde(self, instrumentId):
+        redis.setPath("../../config.conf")
         key = tools.createKey(instrumentId)
         len = redis.conn.llen(key)
         trade_list = []
@@ -126,7 +127,7 @@ class AnalysisTools(object):
 
 if __name__ == "__main__":
     tool = AnalysisTools()
-    tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2019, 6, 1), date(2020, 1, 16), )
+    tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2019, 6, 1), date(2020, 1, 20), )
     # tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.p", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 14), )
     # tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
     # c1605_avg = tool.avg_price("DCE.c1605")

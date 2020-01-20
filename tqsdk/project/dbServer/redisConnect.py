@@ -6,8 +6,14 @@ import redis
 from tqsdk import TqApi, TqAccount, TqSim
 import project.tools.tools as tools
 
+path = "../../config.conf"
+def setPath(redisPath):
+    global path
+    path = redisPath
+
+
 cp = ConfigParser()
-cp.read("../config.conf")
+cp.read(path)
 redis_host = cp.get("redis", "redis_host")
 redis_port = cp.get("redis", "redis_port")
 redis_pool = cp.get("redis", "redis_max_connections")
