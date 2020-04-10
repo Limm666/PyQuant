@@ -108,29 +108,30 @@ class QuantTrade(Trade):
 
 
 if __name__ == "__main__":
-    api = TqApi(TqSim(), backtest=TqBacktest(start_dt=date(2018, 5, 1), end_dt=date(2018, 10, 1)))
+    api = TqApi(TqSim(), backtest=TqBacktest(start_dt=date(2019, 8, 1), end_dt=date(2019, 10, 1)),web_gui=True )
     print("策略开始运行")
 
-    SYMBOL = "DCE.jd2005"  # 合约代码
-    quote = api.get_quote(SYMBOL)
-    klines = api.get_kline_serial(SYMBOL, 24 * 60 * 60)  # 86400使用日线
-    target_pos = TargetPosTask(api, SYMBOL)
+    instrumentId = "DCE.jd2005"  # 合约代码
+    quote = api.get_quote(instrumentId)
+    klines = api.get_kline_serial(instrumentId, 24 * 60 * 60)  # 86400使用日线
+    target_pos = TargetPosTask(api, instrumentId)
 
-    trade = QuantTrade(api, trade=Trade(api))
+    trade = QuantTrade(api,instrumentId,"macd_trade", trade=Trade(api))
 
-    buy_line, sell_line = trade.dual_thrust_trade(quote, klines)  # 获取上下轨
+    # buy_line, sell_line = trade.dual_thrust_trade(quote, klines)  # 获取上下轨
 
     while True:
         api.wait_update()
-        if api.is_changing(klines.iloc[-1], ["datetime", "open"]):  # 新产生一根日线或开盘价发生变化: 重新计算上下轨
-            buy_line, sell_line = trade.dual_thrust_trade(quote, klines)
-
-        if api.is_changing(quote, "last_price"):
-            if quote.last_price > buy_line:  # 高于上轨
-                print("高于上轨,目标持仓 多头3手")
-                target_pos.set_target_volume(3)  # 交易
-            elif quote.last_price < sell_line:  # 低于下轨
-                print("低于下轨,目标持仓 空头3手")
-                target_pos.set_target_volume(-3)  # 交易
-            else:
-                print('未穿越上下轨,不调整持仓')
+        # if api.is_changing(klines.iloc[-1], ["datetime", "open"]):  # 新产生一根日线或开盘价发生变化: 重新计算上下轨
+        #     buy_line, sell_line = trade.dual_thrust_trade(quote, klines)
+        #
+        # if api.is_changing(quote, "last_price"):
+        #     if quote.last_price > buy_line:  # 高于上轨
+        #         print("高于上轨,目标持仓 多头3手")
+        #         target_pos.set_target_volume(3)  # 交易
+        #     elif quote.last_price < sell_line:  # 低于下轨
+        #         print("低于下轨,目标持仓 空头3手")
+        #         target_pos.set_target_volume(-3)  # 交易
+        #     else:
+        #         print('未穿越上下轨,不调整持仓')
+    api.close()

@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*- 
 # author: limm_666
+
 import sys
 # sys.path.append("../")
-from project.trade.trade import Trade
+
 from project.trade.quantitive_trade import QuantTrade
 from tqsdk import TqApi, TqAccount, TqSim, TqReplay
 from datetime import date
