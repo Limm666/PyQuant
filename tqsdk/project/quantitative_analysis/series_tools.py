@@ -5,9 +5,10 @@ from matplotlib import pyplot as plt
 import matplotlib.ticker as ticker
 from tqsdk import tafunc
 import numpy as np
+from tqsdk.ta import ATR
+
 from project.download import download
 from datetime import datetime, date
-import project.dbServer.redisConnect as redis
 import project.tools.tools as tools
 
 
@@ -55,8 +56,8 @@ class AnalysisTools(object):
 
     # 跨品种套利的价差分析
     def crossProuductSpread(self, productCode1, productCode2, duration, strateDate, endDate, ):
-        download.download(productCode1, productCode1, duration, strateDate, endDate,   "./" + productCode1 + ".csv")
-        download.download(productCode2, productCode2, duration, strateDate, endDate,   "./" + productCode2 + ".csv")
+        download.download(productCode1, productCode1, duration, strateDate, endDate, "./" + productCode1 + ".csv")
+        download.download(productCode2, productCode2, duration, strateDate, endDate, "./" + productCode2 + ".csv")
         self.spreadAnalysis(productCode1, productCode2)
 
     # 成交，持仓分析
@@ -111,13 +112,34 @@ class AnalysisTools(object):
         return avg_price
 
     # 分析成交情况
-    def analysis_trde(self, instrumentId):
-        redis.setPath("../../config.conf")
-        key = tools.createKey(instrumentId)
-        len = redis.conn.llen(key)
-        trade_list = []
-        for i in range(len):
-            trade_list.append(redis.conn.lindex(key, i))
+    # def analysis_trde(self, instrumentId):
+    #     key = tools.createKey(instrumentId)
+    #     len = redis.conn.llen(key)
+    #     trade_list = []
+    #     for i in range(len):
+    #         trade_list.append(redis.conn.lindex(key, i))
+
+    # ATR标准差分析
+    def ThetaATR(self, df, n):
+        upper = 6  # 上轨
+        mid = 5  # 中轨
+        lower = 4  # 下轨
+
+        atr = ATR(df, n)
+        # 标准化，每根柱子ATR 设置为5，得出比例
+        ratio = atr.atr / mid
+        # 算出thetaATR
+        thetaATR = atr.tr / ratio
+        print(thetaATR)
+
+        plt.hlines(upper, 0, 200, colors="r")
+        plt.hlines(mid, 0, 200, colors='y')
+        plt.hlines(lower, 0, 200, colors='b')
+        plt.plot(thetaATR.index,thetaATR.values)
+        plt.plot(df["close"]/500)
+        plt.show()
+        # if (thetaATR > upper):
+        #     print("变化剧烈")
 
 
 if __name__ == "__main__":
