@@ -2,13 +2,13 @@
 # author: limm_666
 import pandas as pd
 from matplotlib import pyplot as plt
-import matplotlib.ticker as ticker
 from tqsdk import tafunc
 import numpy as np
 from tqsdk.ta import ATR
 
 from project.download import download
 from datetime import datetime, date
+from pathlib import Path
 import project.tools.tools as tools
 
 
@@ -41,23 +41,38 @@ class AnalysisTools(object):
         nearByCode_close = pd.Series(nearByCode_close.values, index=nearByCode_date)
         ForwardCode_close = pd.Series(ForwardCode_close.values, index=ForwardCode_date)
         spread = nearByCode_close - ForwardCode_close
-        clear_spread = spread.dropna(axis=0, how='any')
 
-        x = clear_spread.index
-        y = clear_spread.values
-        avg_spread = clear_spread.sum() / clear_spread.__len__()
+        # 返回升序价差，密度函数，均价
+        desc_series,probability_density,avg_spread = self.spreadNormalAnalysis(spread)
 
-        # 画图
         plt.figure(figsize=(20, 8), dpi=80)
-        plt.title('avg spread%f' % avg_spread)
-        plt.plot(x, y)
-        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(10))
+
+        plt.title('avg spread = %f' % avg_spread)
+        # 数据，数组，颜色，颜色深浅，组宽，显示频率
+        plt.xlabel('Spread of ' + nearByCode + '---' + ForwardCode,fontdict={'family': 'Times New Roman', 'weight': 'normal', 'size': 23, })
+        plt.ylabel('Frequency', fontdict={'family': 'Times New Roman', 'weight': 'normal', 'size': 23, })
+
+        plt.hist(desc_series, bins=15, color='b', alpha=0.5, rwidth=0.6, density=True)
+        plt.plot(desc_series, probability_density)
+
         plt.show()
 
-    # 跨品种套利的价差分析
+        # 跨品种套利的价差分析
+
     def crossProuductSpread(self, productCode1, productCode2, duration, strateDate, endDate, ):
-        download.download(productCode1, productCode1, duration, strateDate, endDate, "./" + productCode1 + ".csv")
-        download.download(productCode2, productCode2, duration, strateDate, endDate, "./" + productCode2 + ".csv")
+        productCode1Csv = productCode1 + ".csv"
+        productCode2Csv = productCode2 + ".csv"
+
+        productPath1 = Path("./" + productCode1Csv)
+        productPath2 = Path("./" + productCode2Csv)
+        try:
+            if (not productPath1.is_file() and not productPath2.is_file()):
+                download.download(productCode1, productCode1, duration, strateDate, endDate,
+                                  "./" + productCode1 + ".csv")
+                download.download(productCode2, productCode2, duration, strateDate, endDate,
+                                  "./" + productCode2 + ".csv")
+        except Exception as e:
+            print(e)
         self.spreadAnalysis(productCode1, productCode2)
 
     # 成交，持仓分析
@@ -111,14 +126,6 @@ class AnalysisTools(object):
         print("instrument %s :%f " % (csv_name, avg_price))
         return avg_price
 
-    # 分析成交情况
-    # def analysis_trde(self, instrumentId):
-    #     key = tools.createKey(instrumentId)
-    #     len = redis.conn.llen(key)
-    #     trade_list = []
-    #     for i in range(len):
-    #         trade_list.append(redis.conn.lindex(key, i))
-
     # ATR标准差分析
     def ThetaATR(self, df, n):
         upper = 6  # 上轨
@@ -135,35 +142,31 @@ class AnalysisTools(object):
         plt.hlines(upper, 0, 200, colors="r")
         plt.hlines(mid, 0, 200, colors='y')
         plt.hlines(lower, 0, 200, colors='b')
-        plt.plot(thetaATR.index,thetaATR.values)
-        plt.plot(df["close"]/500)
+        plt.plot(thetaATR.index, thetaATR.values)
+        plt.plot(df["close"] / 500)
         plt.show()
         # if (thetaATR > upper):
         #     print("变化剧烈")
+
+    # 概率密度函数
+    def normfun(self, date_series, miu, sigma):
+        pdf = np.exp(-((date_series - miu) ** 2) / (2 * sigma ** 2)) / (sigma * np.sqrt(2 * np.pi))
+        return pdf
+
+    # 正态分布分析
+    def spreadNormalAnalysis(self, spread):
+        # 升序排列
+        desc_series = spread.sort_values(ascending=True)
+        # 方差
+        sigma = np.std(desc_series)
+        # 均值
+        avg_spread = np.average(desc_series)
+        # 概率密度函数
+        probability_density = self.normfun(desc_series, avg_spread, sigma)
+
+        return desc_series, probability_density, avg_spread
 
 
 if __name__ == "__main__":
     tool = AnalysisTools()
     tool.crossProuductSpread("DCE.y2009", "DCE.p2009", 60 * 60 * 24, date(2019, 11, 13), date(2020, 1, 20), )
-    # tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.p", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 14), )
-    # tool.crossProuductSpread("DCE.y2005", "DCE.p2005", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 8), )
-    # c1605_avg = tool.avg_price("DCE.c1605")
-    # c1705_avg = tool.avg_price("DCE.c1705")
-    # c1805_avg = tool.avg_price("DCE.c1805")
-    # c1905_avg = tool.avg_price("DCE.c1905")
-    # c2005_avg = tool.avg_price("DCE.c2005")
-    # y_avg = tool.avg_price("KQ.i@DCE.c")
-    #
-    # api = TqApi(TqSim())
-    # klines = api.get_kline_serial("DCE.c2005", 24 * 60 * 60)
-    #
-    # ma60 = MA(klines, 60)
-    # ma20 = MA(klines, 20)
-    # ma5 = MA(klines, 5)
-    #
-    # # y = y_avg * 0.1 + c2005_avg * 0.2 + c1605_avg * 0.05 + c1705_avg * 0.05 + c1805_avg * 0.08 + c1905_avg * 0.08 + \
-    # #     #     list(ma60["ma"])[-1] * 0.2 + list(ma20["ma"])[-1] * 0.12 + list(ma5["ma"])[-1] * 0.12
-    #
-    # print("ma60 :%f " % (list(ma60["ma"])[-1]))
-    # print("ma20 :%f " % (list(ma20["ma"])[-1]))
-    # print("ma5 :%f " % (list(ma5["ma"])[-1]))

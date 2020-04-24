@@ -1,25 +1,34 @@
 # -*- coding:utf-8 -*- 
 # author: limm_666
 
-from tqsdk import TqApi
+import re
 
-'''
-画图示例: 在附图中画K线
-注意: 画图示例中用到的数据不含有实际意义，请根据自己的实际策略情况进行修改
-'''
+s1 = '通过几天Python的学习，感觉Python很简单，非常容易上手！'
+print(re.findall('Python', s1))
+print("-------------------------------------")
 
-api = TqApi(web_gui=True)
+s2 = '此次新朗逸主要搭载了1.5L和1.5T两种动力总成的发动机。别克英朗则搭载了1.0T和1.3T的动力总成。'
+print(re.findall('1..', s2))
+print(re.findall('1\...', s2))
+print("-------------------------------------")
 
-klines = api.get_kline_serial("SHFE.cu1910", 86400)
-klines2 = api.get_kline_serial("SHFE.cu1911", 86400)
+# 剔除字符串中的所有空白
+s3 = ' 距离2019北京马拉松开跑只有两周时间了，\n今年的北京马拉松预报名人数超过16万人，\t 媒体公布的中签率只有16%左右，再创历年来的新低。\n'
+print(s3)
+re.sub('\s','',s3)
+print("-------------------------------------")
 
-# 在附图画出 cu1911 的K线: 需要将open、high、log、close的数据都设置正确
-klines["cu1911.open"] = klines2["open"]
-klines["cu1911.high"] = klines2["high"]
-klines["cu1911.low"] = klines2["low"]
-klines["cu1911.close"] = klines2["close"]
-klines["cu1911.board"] = "B2"
+# 取出手机号信息
+s4 = '用户联系方式：13612345566，用户编号为11011254321'
+print(re.findall('1[1356789]\d*', s4))
+# 提取出动力总成
+s5 = '通过对比新朗逸1.5L和1.5T两种动力在1.5年行驶期后的数据。发现1.5T的口碑相对较好！'
+print(re.findall('1.5[a-zA-Z]',s5))
+print("-------------------------------------")
 
-# 由于需要在浏览器中查看绘图结果，因此程序不能退出
-while True:
-    api.wait_update()
+# 提取出用户的年龄
+s6 = 'id:1, name:Tom, age:3, gender:1; id:2, name:Lily, age:5, gender:0'
+print(re.findall('\d',s6))
+print(re.findall('age:\d',s6))
+print(re.findall('age:(\d)',s6))
+# 注意这个括号
