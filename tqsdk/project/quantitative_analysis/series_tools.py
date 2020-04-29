@@ -10,6 +10,7 @@ from project.download import download
 from datetime import datetime, date
 from pathlib import Path
 import project.tools.tools as tools
+from scipy import stats
 
 
 class AnalysisTools(object):
@@ -43,13 +44,14 @@ class AnalysisTools(object):
         spread = nearByCode_close - ForwardCode_close
 
         # 返回升序价差，密度函数，均价
-        desc_series,probability_density,avg_spread = self.spreadNormalAnalysis(spread)
+        desc_series, probability_density, avg_spread = self.spreadNormalAnalysis(spread)
 
         plt.figure(figsize=(20, 8), dpi=80)
 
         plt.title('avg spread = %f' % avg_spread)
         # 数据，数组，颜色，颜色深浅，组宽，显示频率
-        plt.xlabel('Spread of ' + nearByCode + '---' + ForwardCode,fontdict={'family': 'Times New Roman', 'weight': 'normal', 'size': 23, })
+        plt.xlabel('Spread of ' + nearByCode + '---' + ForwardCode,
+                   fontdict={'family': 'Times New Roman', 'weight': 'normal', 'size': 23, })
         plt.ylabel('Frequency', fontdict={'family': 'Times New Roman', 'weight': 'normal', 'size': 23, })
 
         plt.hist(desc_series, bins=15, color='b', alpha=0.5, rwidth=0.6, density=True)
@@ -154,7 +156,7 @@ class AnalysisTools(object):
         return pdf
 
     # 正态分布分析
-    def spreadNormalAnalysis(self, spread):
+    def spreadNormalAnalysis(self, spread, confidence_intverals):
         # 升序排列
         desc_series = spread.sort_values(ascending=True)
         # 方差
@@ -164,9 +166,15 @@ class AnalysisTools(object):
         # 概率密度函数
         probability_density = self.normfun(desc_series, avg_spread, sigma)
 
-        return desc_series, probability_density, avg_spread
+        x = np.random.normal(avg_spread, sigma, 10000)
+        mean, std = x.mean(), x.std(ddof=1)
+        conf_intveral = stats.norm.interval(confidence_intverals, loc=avg_spread, scale=sigma)
+
+        return desc_series, avg_spread, conf_intveral, probability_density
 
 
 if __name__ == "__main__":
     tool = AnalysisTools()
-    tool.crossProuductSpread("DCE.y2009", "DCE.p2009", 60 * 60 * 24, date(2019, 11, 13), date(2020, 1, 20), )
+
+    # tool.crossProuductSpread("DCE.y2009", "DCE.p2009", 60 * 60 * 24, date(2019, 11, 13), date(2020, 1, 20), )
+    # tool.crossProuductSpread("KQ.i@DCE.y", "KQ.i@DCE.p", 60 * 60 * 24, date(2016, 6, 1), date(2020, 1, 14), )
